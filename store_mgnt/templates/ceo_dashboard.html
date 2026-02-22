@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CEO Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/products/">Products</a>
+        <a href="/sales/history/">Sales</a>
+        <a href="/logout/">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>CEO Dashboard</h2>
+
+        <p>Total Revenue: {{ total_revenue }}</p>
+        <p>Total Sales: {{ total_sales }}</p>
+
+        <h3>Low Stock Products (when they get less than 5)</h3>
+
+        {% for product in low_stock_products %}
+            <p>
+                {{ product.name }} — Remaining: {{ product.quantity }}
+            </p>
+        {% empty %}
+            <p>No low stock items.</p>
+
+            <h3>Sales Per Employee</h3>
+    
+        {% endfor %}
+        {% for employee in employee_sales %}
+            <p>
+                {{ employee.username }} —
+                Total Revenue Generated:
+                {{ employee.total_sales|default:0 }}
+            </p>
+        {% endfor %}
+
+        <h3>Manager Performance</h3>
+
+        {% for manager in manager_activity %}
+            <p>
+                {{ manager.username }} |
+                Adjustments: {{ manager.total_adjustments|default:0 }} |
+                Total Stock Changed: {{ manager.total_stock_changed|default:0 }}
+            </p>
+        {% endfor %}
+
+        <br>
+        <a href="/dashboard/">Back</a>
+        </div>
+</body>
+</html>

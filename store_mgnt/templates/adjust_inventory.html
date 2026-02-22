@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container">
+    <h2>Adjust Inventory</h2>
+
+    <p>Product: {{ product.name }}</p>
+    <p>Current Stock: {{ product.quantity }}</p>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Adjustment (Use negative to reduce stock):</label>
+        <input type="number" name="adjustment">
+
+        <button type="submit">Update</button>
+    </form>
+
+    <br>
+    <a href="/products/">Back</a>
+</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Sale</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/products/">Products</a>
+        <a href="/sales/history/">Sales</a>
+        <a href="/logout/">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Record Sale</h2>
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Select Product:</label>
+            <select name="product">
+                {% for product in products %}
+                    <option value="{{ product.id }}">
+                        {{ product.name }} (Stock: {{ product.quantity }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <br><br>
+
+            <label>Quantity:</label>
+            <input type="number" name="quantity">
+
+            <br><br>
+
+            <button type="submit">Record Sale</button>
+        </form>
+
+        <br>
+        <a href="/dashboard/">Back</a>
+    </div>
+</body>
+</html> 

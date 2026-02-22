@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales History</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/products/">Products</a>
+        <a href="/sales/history/">Sales</a>
+        <a href="/logout/">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Sales History</h2>
+
+        {% for sale in sales %}
+            <p>
+                Sale ID: {{ sale.id }} |
+                Employee: {{ sale.employee.username }} |
+                Total: {{ sale.total_amount }} |
+                Date: {{ sale.created_at }}
+            </p>
+        {% empty %}
+            <p>No sales yet.</p>
+        {% endfor %}
+
+        <br>
+        <a href="/dashboard/">Back</a>
+    </div>  
+
+</body>
+</html>

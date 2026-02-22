@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="navbar">
+    <a href="/dashboard/">Dashboard</a>
+    <a href="/logout/">Logout</a>
+</div>
+
+<div class="container">
+    <h2>Employee List</h2>
+
+    {% for employee in employees %}
+        <p>
+            {{ employee.username }} |
+            Role: {{ employee.role }} |
+            Salary: {{ employee.salary }}
+
+            {% if employee.role != "CEO" %}
+                <a href="/hr/update/{{ employee.id }}/">Update Salary</a>
+            {% endif %}
+        </p>
+    {% endfor %}
+</div>

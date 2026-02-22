@@ -1,0 +1,210 @@
+/* static/css/login.css (replace existing) */
+:root{
+  --card-width: 380px;
+  --accent: #6366f1;
+  --muted: #6b7280;
+  --bg1: #f5f7ff;
+  --bg2: #eef1ff;
+  --radius: 12px;
+}
+
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background: linear-gradient(90deg,var(--bg1),var(--bg2));
+  color:#111827;
+}
+
+/* center layout */
+.page-wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px 16px;
+  animation:fadeIn 300ms ease;
+}
+
+.login-card{
+  width:var(--card-width);
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(20,23,39,0.08);
+  padding:26px;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+/* subtle hover lift on large screens */
+@media (hover:hover){
+  .login-card:hover{box-shadow:0 20px 40px rgba(20,23,39,0.10); }
+}
+
+/* small logo / heading */
+.header{
+  text-align:center;
+  margin-bottom:12px;
+}
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:-0.2px;
+  font-weight:700; /* blockish */
+}
+.subtitle{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* form */
+.form-row{ margin-top:14px; }
+label{
+  display:block;
+  font-size:13px;
+  margin-bottom:6px;
+  font-weight:600;
+}
+.input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6e9ef;
+  background:#fff;
+  font-size:14px;
+}
+.input:focus{
+  outline:none;
+  border-color: rgba(99,102,241,0.85);
+  box-shadow: 0 6px 18px rgba(99,102,241,0.06);
+}
+
+/* compact button */
+.btn{
+  display:block;
+  width:100%;
+  padding:11px 14px;
+  margin-top:14px;
+  background:var(--accent);
+  color:#fff;
+  border-radius:10px;
+  border:0;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow: 0 8px 18px rgba(99,102,241,0.08);
+}
+.btn:active{ transform:translateY(1px); }
+
+/* demo box — compact inline pills like image */
+.demo-box{
+  margin-top:18px;
+  padding:14px;
+  border-radius:12px;
+  border:1px dashed #e5e7eb;
+  background: #fff;
+}
+.demo-title{
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  margin-bottom:8px;
+}
+.demo-sub{ text-align:center; color:var(--muted); font-size:12px; margin-bottom:10px; }
+
+/* role pills row: horizontal, wraps */
+.role-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.role-pill{
+  background:#f8fafc;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:13px;
+  color:#111827;
+  border: 1px solid transparent;
+  cursor:pointer;
+  transition: all .12s ease;
+}
+.role-pill:hover{ background:#eef2ff; border-color: rgba(99,102,241,0.10); transform: translateY(-2px); }
+
+/* small utilities */
+.row-between{display:flex;justify-content:space-between;align-items:center}
+.small{ font-size:12px; color:var(--muted) }
+
+/* error styling (optional upgrade) */
+.error{
+  margin-top:10px;
+  padding:10px 12px;
+  background: #fff3f2;
+  color:#b91c1c;
+  border-radius:8px;
+  font-size:13px;
+  border:1px solid rgba(185,28,28,0.08);
+}
+
+/* password toggle inline */
+.pw-wrap{ position:relative; }
+/* password input / toggle alignment */
+.pw-wrap { position: relative; }
+
+.input {
+  /* give room for the toggle button inside the input */
+  padding-right: 48px;    /* ensure toggle doesn't overlap the text */
+}
+
+/* centered icon button inside input */
+.pw-toggle{
+  position: absolute;
+  right: 8px;
+  top: 68%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+/* smaller svg inside button */
+.pw-toggle svg {
+  width: 20px;
+  height: 20px;
+  display:block;
+}
+
+.pw-wrap:focus-within .pw-toggle { color: var(--accent); }
+
+/* fade in animation */
+@keyframes fadeIn{
+  from{opacity:0; transform: translateY(4px)}
+  to{opacity:1; transform:none}
+}
+
+/* responsive adjustments */
+@media (max-width:420px){
+  :root{ --card-width: 92vw; }
+  .logo{ width:48px; height:48px; }
+}

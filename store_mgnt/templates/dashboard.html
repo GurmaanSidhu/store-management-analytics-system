@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard/">Dashboard</a>
+
+        <a href="/products/">Products</a>
+
+        {% if role == "EMPLOYEE" %}
+            <a href="/sales/create/">Record Sale</a>
+            <a href="/sales/history/">My Sales</a>
+        {% endif %}
+
+        {% if role == "CEO" %}
+            <a href="/ceo/">CEO Dashboard</a>
+            <a href="/sales/history/">All Sales</a>
+        {% endif %}
+
+        <a href="/logout/">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Welcome {{ username }}</h2>
+        <h3>Your Role: {{ role }}</h3>
+
+        {% if role == "CEO" %}
+            <p>You can manage everything.</p>
+            <a href="/ceo/">View CEO Dashboard</a>
+        {% elif role == "HR" %}
+            <p>You can manage employee salaries.</p>
+            <a href="/hr/employees/">Manage Employees</a>
+            <a href="/hr/shifts/">View Attendance</a>
+        {% elif role == "MANAGER" %}
+            <p>You can manage products.</p>
+        {% elif role == "EMPLOYEE" %}
+            <p>You can record sales.</p>
+            <a href="/sales/create/">Record Sale</a><br><br>
+            <a href="/sales/history/">View My Sales</a>
+            <a href="/shift/checkin/">Check In</a><br><br>
+            <a href="/shift/checkout/">Check Out</a><br><br>
+        {% endif %}
+
+        <br><br>
+        <a href="/logout/">Logout</a>
+    </div>
+</body>
+</html>

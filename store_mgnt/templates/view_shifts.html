@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="container">
+    <h2>Attendance Records</h2>
+
+    {% for shift in shifts %}
+        <p>
+            {{ shift.employee.username }} |
+            Date: {{ shift.date }} |
+            In: {{ shift.check_in }} |
+            Out: {{ shift.check_out }}
+        </p>
+    {% endfor %}
+</div>
